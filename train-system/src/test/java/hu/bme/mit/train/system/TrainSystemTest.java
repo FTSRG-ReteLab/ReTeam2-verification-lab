@@ -50,6 +50,22 @@ public class TrainSystemTest {
 		Assert.assertEquals(0, controller.getReferenceSpeed());
 	}
 
-	
-	
+	@Test
+	public void OverridingSpeedLimitUpTo500_SetsAlarmStateTrue() {
+		sensor.overrideSpeedLimit(501);
+		Assert.assertEquals(true, user.getAlarmState());
+	}
+
+	@Test
+	public void OverridingReferenceSpeedUpTo50Percent_SetsAlarmStateTrue() {
+		controller.setSpeedLimit(120);
+
+		user.overrideJoystickPosition(100);
+		controller.followSpeed();
+
+		sensor.overrideSpeedLimit(40);
+
+		Assert.assertEquals(true, user.getAlarmState());
+	}
+
 }
