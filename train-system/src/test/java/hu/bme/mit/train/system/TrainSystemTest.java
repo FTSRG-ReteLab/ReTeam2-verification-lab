@@ -1,6 +1,7 @@
 package hu.bme.mit.train.system;
 
 import org.junit.Assert;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,7 +25,7 @@ public class TrainSystemTest {
 
 		sensor.overrideSpeedLimit(50);
 	}
-
+	
 	@Test
 	public void OverridingJoystickPosition_IncreasesReferenceSpeed() {
 		sensor.overrideSpeedLimit(10);
@@ -48,24 +49,6 @@ public class TrainSystemTest {
 		user.overrideJoystickPosition(-5);
 		controller.followSpeed();
 		Assert.assertEquals(0, controller.getReferenceSpeed());
-	}
-
-	@Test
-	public void OverridingSpeedLimitUpTo500_SetsAlarmStateTrue() {
-		sensor.overrideSpeedLimit(501);
-		Assert.assertEquals(true, user.getAlarmState());
-	}
-
-	@Test
-	public void OverridingReferenceSpeedUpTo50Percent_SetsAlarmStateTrue() {
-		controller.setSpeedLimit(120);
-
-		user.overrideJoystickPosition(100);
-		controller.followSpeed();
-
-		sensor.overrideSpeedLimit(40);
-
-		Assert.assertEquals(true, user.getAlarmState());
 	}
 
 }
