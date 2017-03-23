@@ -28,6 +28,11 @@ public class TrainUserImpl implements TrainUser {
 	public void overrideJoystickPosition(int joystickPosition) {
 		this.joystickPosition = joystickPosition;
 		controller.setJoystickPosition(joystickPosition);
+		boolean result = controller.setReferenceSpeed();
+		if(result)
+			System.out.println("The speed has changed!");
+		else
+			System.out.println("The speed has not changed!");
 	}
 	
 	@Override

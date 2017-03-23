@@ -30,6 +30,8 @@ public class TrainControllerImpl implements TrainController {
 	public int getReferenceSpeed() {
 		return referenceSpeed;
 	}
+	
+	
 
 	@Override
 	public void setSpeedLimit(int speedLimit) {
@@ -58,6 +60,15 @@ public class TrainControllerImpl implements TrainController {
 				followSpeed();
 			}
 		}, 1000);
+	}
+
+	@Override
+	public boolean setReferenceSpeed() {
+		if(referenceSpeed + step <= speedLimit) {
+			referenceSpeed = referenceSpeed + step;
+			return true;
+		}
+		return false;
 	}
 
 }
